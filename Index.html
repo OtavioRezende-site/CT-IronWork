@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Work CT | Alta Performance</title>
+    <!-- Favicon: Urso com olhos vermelhos -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='55' r='35' fill='black'/%3E%3Ccircle cx='25' cy='25' r='12' fill='black'/%3E%3Ccircle cx='75' cy='25' r='12' fill='black'/%3E%3Ccircle cx='35' cy='45' r='4' fill='red'/%3E%3Ccircle cx='65' cy='45' r='4' fill='red'/%3E%3Cpath d='M40 65 Q50 75 60 65' stroke='white' fill='none' stroke-width='2'/%3E%3C/svg%3E">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#cc0000',
+                            'red-dark': '#a30000',
+                            chumbo: '#1a1a1a',
+                            dark: '#0a0a0a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        impact: ['Oswald', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bg-overlay {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85));
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        .accordion-item.active .icon-chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-white font-sans selection:bg-brand-red selection:text-white">
+
+    <!-- HEADER -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-md bg-black/60 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center">
+                <img src="public/Screenshot_20260421_033138_Instagram.jpg" alt="Iron Work CT Logo" class="h-10 md:h-12 w-auto object-contain rounded" onerror="this.src='https://picsum.photos/seed/gym/100/100'">
+            </a>
+            
+            <!-- Nav Links Desktop (Sempre visíveis ou ocultos conforme desejado, removendo o toggle) -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold uppercase tracking-widest">
+                <a href="#estrutura" class="hover:text-brand-red transition-colors">A Estrutura</a>
+                <a href="#metodologia" class="hover:text-brand-red transition-colors">Diferenciais</a>
+                <a href="#planos" class="hover:text-brand-red transition-colors">Planos</a>
+                <a href="#faq" class="hover:text-brand-red transition-colors">Dúvidas</a>
+                <a href="#contato" class="hover:text-brand-red transition-colors">Contato</a>
+                <a href="https://wa.me/5521982010654?text=Olá%2C%20quero%20agendar%20um%20treino%20na%20Iron%20Work%20CT!" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2 rounded-full transition-all active:scale-95 shadow-lg shadow-brand-red/20 flex items-center space-x-2">
+                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>Agende um Treino</span>
+                </a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <img src="public/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Academia Hardcore" onerror="this.src='https://picsum.photos/seed/fitness/1920/1080?grayscale'">
+        <div class="absolute inset-0 bg-overlay"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-sm mb-4 fade-in">O CT Mais Completo de Maricá</p>
+            <h1 class="font-impact text-5xl md:text-8xl lg:text-9xl tracking-tighter leading-none mb-6 fade-in uppercase">
+                TRANSFORMANDO CORPOS <br class="hidden md:block">
+                <span class="text-brand-red">E MENTALIDADES.</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto fade-in italic">
+                Aqui você não treina, você evolui. Prepare-se para atingir sua melhor versão com equipamentos de elite e ambiente focado.
+            </p>
+            <div class="fade-in">
+                <a href="https://wa.me/5521982010654?text=Olá%2C%20quero%20começar%20minha%20evolução%20na%20Iron%20Work%20CT!" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center space-x-3 bg-brand-red hover:bg-brand-red-dark text-white px-8 py-4 md:px-12 md:py-6 rounded-md font-extrabold text-lg md:text-xl uppercase tracking-widest transition-all active:scale-95 animate-pulse-fast shadow-2xl shadow-brand-red/40">
+                    <svg class="h-6 w-6 md:h-8 md:w-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>QUERO COMEÇAR MINHA EVOLUÇÃO</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 inset-x-0 animate-bounce flex flex-col items-center pointer-events-none z-10 px-4">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-2 text-center w-full block">Deslize para ver mais</span>
+            <div class="w-px h-10 bg-gradient-to-b from-brand-red to-transparent mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="metodologia" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="mb-16 text-center">
+                <h2 class="font-impact text-4xl md:text-6xl uppercase mb-4">POR QUE A <span class="text-white/20">IRON WORK?</span></h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in">
+                    <div class="text-brand-red mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold uppercase mb-3 italic">Equipamentos de Ponta</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Maquinário biomecanicamente superior, desenhado para extrair o máximo de cada fibra muscular.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in">
+                    <div class="text-brand-red mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold uppercase mb-3 italic">Ambiente Hardcore</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Sem distrações. Música, luz e energia planejadas para manter seu foco 100% no treino.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in">
+                    <div class="text-brand-red mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold uppercase mb-3 italic">Equipe Especializada</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Profissionais que vivem o esporte e entendem o caminho para resultados reais.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in">
+                    <div class="text-brand-red mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold uppercase mb-3 italic">Foco Total no Aluno</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Seu objetivo é nossa missão. Planejamento estratégico para cada biotipo e nível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- A ESTRUTURA -->
+    <section id="estrutura" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="mb-16 text-center">
+                <h2 class="font-impact text-4xl md:text-6xl uppercase mb-4">A ESTRUTURA</h2>
+                <p class="text-gray-400 uppercase tracking-widest text-sm italic">Ambiente projetado para performance extrema</p>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="aspect-square bg-brand-chumbo rounded-lg overflow-hidden border border-white/10 fade-in">
+                    <img src="public/galeria-1.jpg" alt="Estrutura Iron Work 1" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/muscle1/800/800'">
+                </div>
+                <div class="aspect-square bg-brand-chumbo rounded-lg overflow-hidden border border-white/10 fade-in">
+                    <img src="public/galeria-2.jpg" alt="Estrutura Iron Work 2" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/muscle2/800/800'">
+                </div>
+                <div class="aspect-square bg-brand-chumbo rounded-lg overflow-hidden border border-white/10 fade-in">
+                    <img src="public/galeria-3.jpg" alt="Estrutura Iron Work 3" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/muscle3/800/800'">
+                </div>
+                <div class="aspect-square bg-brand-chumbo rounded-lg overflow-hidden border border-white/10 fade-in">
+                    <img src="public/galeria-4.jpg" alt="Estrutura Iron Work 4" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/muscle4/800/800'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="mb-16 text-center">
+                <h2 class="font-impact text-4xl md:text-6xl uppercase mb-4">NOSSOS <span class="text-brand-red">PLANOS</span></h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plano Mensal -->
+                <div class="bg-brand-chumbo p-8 rounded-2xl border border-white/5 flex flex-col fade-in relative overflow-hidden group">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold uppercase italic mb-2">Mensal</h3>
+                        <p class="text-gray-400 text-sm">Ideal para quem busca flexibilidade.</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black">R$ ---</span>
+                        <span class="text-gray-500">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Acesso Total à Estrutura
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Sem Taxa de Cancelamento
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5521982010654?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Plano%20Mensal!" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block w-full py-4 text-center bg-white/5 hover:bg-brand-red text-white font-bold uppercase tracking-widest rounded-lg transition-all border border-white/10 hover:border-brand-red flex items-center justify-center space-x-2">
+                        <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span>Consultar Valor</span>
+                    </a>
+                </div>
+
+                <!-- Plano Semestral -->
+                <div class="bg-brand-chumbo p-8 rounded-2xl border-2 border-brand-red flex flex-col fade-in relative overflow-hidden group scale-105 z-10">
+                    <div class="absolute top-0 right-0 bg-brand-red text-white text-[10px] font-bold px-4 py-1 uppercase tracking-widest">Mais Procurado</div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold uppercase italic mb-2">Semestral</h3>
+                        <p class="text-gray-400 text-sm">Comprometimento com resultados.</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black">R$ ---</span>
+                        <span class="text-gray-500">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Acesso Total à Estrutura
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Avaliação Biomecânica
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Bônus Exclusivos
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5521982010654?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Plano%20Semestral!" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block w-full py-4 text-center bg-brand-red hover:bg-brand-red-dark text-white font-bold uppercase tracking-widest rounded-lg transition-all shadow-xl shadow-brand-red/20 flex items-center justify-center space-x-2">
+                        <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span>Garantir Vaga</span>
+                    </a>
+                </div>
+
+                <!-- Plano Anual -->
+                <div class="bg-brand-chumbo p-8 rounded-2xl border border-white/5 flex flex-col fade-in relative overflow-hidden group">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold uppercase italic mb-2">Anual</h3>
+                        <p class="text-gray-400 text-sm">Foco total na transformação definitiva.</p>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black">R$ ---</span>
+                        <span class="text-gray-500">/mês</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Melhor Custo Benefício
+                        </li>
+                        <li class="flex items-center text-sm text-gray-300">
+                            <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Adesão Zero
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5521982010654?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Plano%20Anual!" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block w-full py-4 text-center bg-white/5 hover:bg-brand-red text-white font-bold uppercase tracking-widest rounded-lg transition-all border border-white/10 hover:border-brand-red flex items-center justify-center space-x-2">
+                        <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        <span>Consultar Valor</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="py-24 bg-brand-dark border-t border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="mb-16 text-center">
+                <h2 class="font-impact text-4xl md:text-6xl uppercase mb-4">QUEM <span class="text-brand-red">TREINA,</span> RECOMENDA</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in relative flex flex-col h-full">
+                    <svg class="absolute top-4 right-4 h-12 w-12 text-white/5" fill="currentColor" viewBox="0 0 32 32"><path d="M10 8v8h6l-3 7h7l3-7V8h-13zm12 0v8h6l-3 7h7l3-7V8h-13z"></path></svg>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed flex-grow">"O melhor ambiente de treino de Maricá. Equipamentos de alto nível e uma galera que realmente foca na execução."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&auto=format&fit=crop" class="h-12 w-12 rounded-full object-cover border-2 border-brand-red shadow-lg" alt="Ricardo S.">
+                        <div class="ml-4">
+                            <p class="font-bold uppercase text-sm">Ricardo S.</p>
+                            <div class="flex text-brand-red">
+                                <span class="text-xs">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in relative flex flex-col h-full">
+                    <svg class="absolute top-4 right-4 h-12 w-12 text-white/5" fill="currentColor" viewBox="0 0 32 32"><path d="M10 8v8h6l-3 7h7l3-7V8h-13zm12 0v8h6l-3 7h7l3-7V8h-13z"></path></svg>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed flex-grow">"Finalmente um CT onde o professor não fica no celular. Atenção total e correção constante. Evoluí mais em 3 meses aqui do que em 1 ano na antiga academia."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&auto=format&fit=crop" class="h-12 w-12 rounded-full object-cover border-2 border-brand-red shadow-lg" alt="Mariana F.">
+                        <div class="ml-4">
+                            <p class="font-bold uppercase text-sm">Mariana F.</p>
+                            <div class="flex text-brand-red">
+                                <span class="text-xs">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="bg-brand-chumbo p-8 rounded-xl border border-white/5 fade-in relative flex flex-col h-full">
+                    <svg class="absolute top-4 right-4 h-12 w-12 text-white/5" fill="currentColor" viewBox="0 0 32 32"><path d="M10 8v8h6l-3 7h7l3-7V8h-13zm12 0v8h6l-3 7h7l3-7V8h-13z"></path></svg>
+                    <p class="text-gray-300 italic mb-8 leading-relaxed flex-grow">"Maquinário biomecanicamente perfeito. Para quem leva o esporte a sério, a Iron Work é o lugar."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&h=150&auto=format&fit=crop" class="h-12 w-12 rounded-full object-cover border-2 border-brand-red shadow-lg" alt="André L.">
+                        <div class="ml-4">
+                            <p class="font-bold uppercase text-sm">André L.</p>
+                            <div class="flex text-brand-red">
+                                <span class="text-xs">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 bg-brand-dark border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="mb-16 text-center">
+                <h2 class="font-impact text-4xl md:text-6xl uppercase mb-4">DÚVIDAS FREQUENTES</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Item 1 -->
+                <div class="accordion-item bg-brand-chumbo border border-white/5 rounded-lg overflow-hidden fade-in">
+                    <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors">
+                        <span class="font-bold text-lg">Quais os horários de funcionamento?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-chevron h-6 w-6 text-brand-red transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-5 text-gray-400">
+                            Segunda a Sexta: 06h às 22h. Sábados e Feriados: Consultar horários especiais através do nosso Instagram.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="accordion-item bg-brand-chumbo border border-white/5 rounded-lg overflow-hidden fade-in">
+                    <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors">
+                        <span class="font-bold text-lg">Aceitam Gympass?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-chevron h-6 w-6 text-brand-red transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-5 text-gray-400">
+                            Sim, aceitamos Gympass! Verifique seu plano diretamente no app do Gympass para confirmar a elegibilidade.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="accordion-item bg-brand-chumbo border border-white/5 rounded-lg overflow-hidden fade-in">
+                    <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors">
+                        <span class="font-bold text-lg">Preciso ter experiência prévia?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-chevron h-6 w-6 text-brand-red transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="pb-5 text-gray-400">
+                            Absolutamente não. Nossos treinadores estão aqui para guiar desde o iniciante até o atleta avançado. O importante é o desejo de evolução.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO E CONTATO -->
+    <section id="contato" class="py-24 bg-brand-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="font-impact text-5xl md:text-7xl uppercase mb-8 leading-tight">VEM PRO <br> <span class="text-brand-red italic">FRONT DE BATALHA.</span></h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1 text-brand-red bg-brand-red/10 p-3 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl uppercase mb-1">Localização</h4>
+                                <p class="text-gray-400 leading-relaxed max-w-sm">
+                                    Estrada Velha de Maricá nº 523, Qd 3B Lt 22, <br>
+                                    Maricá - RJ (CEP: 24913-267)
+                                </p>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=estrada+velha+de+Marica+523+Marica+Rio+de+Janeiro" 
+                                   target="_blank"
+                                   class="inline-flex items-center space-x-2 mt-4 bg-white text-black hover:bg-gray-200 px-6 py-3 rounded-full font-bold transition-all active:scale-95 group">
+                                    <span>📍 Traçar Rota no GPS</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1 text-brand-red bg-brand-red/10 p-3 rounded-lg flex-shrink-0">
+                                <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl uppercase mb-1">WhatsApp</h4>
+                                <a href="https://wa.me/5521982010654?text=Olá%2C%20peguei%20seu%20contato%20pelo%20site%21" 
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="text-gray-400 hover:text-brand-red transition-colors font-bold">(21) 98201-0654</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative fade-in">
+                    <div class="absolute -inset-4 bg-brand-red/20 blur-3xl opacity-30 rounded-full"></div>
+                    <div class="relative bg-brand-chumbo p-1 md:p-2 rounded-3xl border border-white/10 shadow-2xl overflow-hidden aspect-video">
+                        <!-- Real Google Maps Embed -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1838.6148332145337!2d-42.9234567!3d-22.9034567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99942a17f6990d%3A0x6b4be9e4df8f4c!2sEstr.%20Velha%20de%20Maric%C3%A1%2C%20523%20-%20Itapeba%2C%20Maric%C3%A1%20-%20RJ%2C%2024912-680!5e0!3m2!1spt-BR!2sbr!4v1713689400000!5m2!1spt-BR!2sbr" 
+                            class="w-full h-full rounded-2xl grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-500" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-24 bg-gradient-to-b from-brand-dark to-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="public/hero-bg.jpg" class="w-full h-full object-cover grayscale" alt="Fundo CTA">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center fade-in">
+            <h2 class="font-impact text-5xl md:text-7xl uppercase mb-6 leading-none">SUA <span class="text-brand-red">TRANSFORMAÇÃO</span> COMEÇA HOJE.</h2>
+            <p class="text-gray-400 text-lg md:text-xl mb-12 italic">Não deixe para amanhã o corpo que você pode começar a construir agora. O primeiro passo é o mais difícil, e nós estaremos lá para te guiar.</p>
+            <div class="flex justify-center">
+                <a href="https://wa.me/5521982010654?text=Olá%2C%20estou%20pronto%20para%20começar%20na%20Iron%20Work%20CT!" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center space-x-4 bg-brand-red hover:bg-brand-red-dark text-white px-8 py-5 md:px-12 md:py-6 rounded-md font-black text-xl md:text-2xl uppercase tracking-tighter transition-all active:scale-95 shadow-2xl shadow-brand-red/40">
+                    <svg class="h-7 w-7 md:h-9 md:w-9 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>QUERO ME MATRICULAR AGORA</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black border-t border-white/5 relative">
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/5521982010654?text=Olá%2C%20peguei%20seu%20contato%20pelo%20site%20e%20gostaria%20de%20informações%21" 
+           target="_blank" rel="noopener noreferrer"
+           class="fixed bottom-6 right-6 z-[60] bg-[#25d366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform active:scale-95 group">
+            <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-black text-white text-[10px] px-3 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest font-bold">Fale Conosco agora</span>
+        </a>
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+            <div class="flex items-center">
+                <img src="public/Screenshot_20260421_033138_Instagram.jpg" alt="Iron Work Logo Footer" class="h-8 w-auto object-contain mr-4 rounded grayscale opacity-50" onerror="this.src='https://picsum.photos/seed/footer/50/50'">
+                <p class="text-xs text-gray-600">© 2026 IRON WORK CT. <br class="md:hidden"> TODOS OS DIREITOS RESERVADOS.</p>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <a href="https://instagram.com/ironwork.ct" target="_blank" class="text-white hover:text-brand-red transition-all flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full border border-white/10 hover:border-brand-red/50">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span class="font-bold text-sm tracking-widest uppercase italic">@ironwork.ct</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // SCROLL REVEAL (IntersectionObserver)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // HEADER SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('py-2', 'bg-black/90');
+                    header.classList.remove('py-3', 'bg-black/60');
+                } else {
+                    header.classList.add('py-3', 'bg-black/60');
+                    header.classList.remove('py-2', 'bg-black/90');
+                }
+            }
+        });
+
+        // ACCORDION
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
